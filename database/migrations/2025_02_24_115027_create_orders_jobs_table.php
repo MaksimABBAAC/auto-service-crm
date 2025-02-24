@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders_name_work', function (Blueprint $table) {
+        Schema::create('orders_jobs', function (Blueprint $table) {
             $table->id();
             $table->integer('order_id');
-            $table->integer('name_work_id');
+            $table->integer('job_id');
+            $table->DECIMAL('cost');
+            $table->integer('quantity');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
-            $table->foreign('name_work_id')->references('id')->on('name_work')->onDelete('cascade');
+            $table->foreign('job_id')->references('id')->on('jobs')->onDelete('cascade');
 
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders_name_work');
+        Schema::dropIfExists('orders_jobs');
     }
 };

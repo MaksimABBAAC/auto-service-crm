@@ -15,12 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('brand');
             $table->string('model');
-            $table->integer('name_work_id');
             $table->integer('client_id');
             $table->integer('master_id');
-            $table->foreign('name_work_id')->references('id')->on('name_work')->onDelete('cascade');
-            $table->foreign('client_id')->references('id')->on('client')->onDelete('cascade');
-            $table->foreign('master_id')->references('id')->on('master')->onDelete('cascade');
+            $table->foreign('client_id')->references('id')->on('client_master')->onDelete('cascade');
+            $table->foreign('master_id')->references('id')->on('client_master')->onDelete('cascade');
 
         });
     }
