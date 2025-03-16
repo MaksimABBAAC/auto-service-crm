@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('model');
             $table->integer('client_id');
             $table->integer('master_id');
-            $table->foreign('client_id')->references('id')->on('client_master')->onDelete('cascade');
-            $table->foreign('master_id')->references('id')->on('client_master')->onDelete('cascade');
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
+            $table->foreign('master_id')->references('id')->on('masters')->onDelete('cascade');
 
         });
     }

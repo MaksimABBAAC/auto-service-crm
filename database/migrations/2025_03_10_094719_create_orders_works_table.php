@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders_jobs', function (Blueprint $table) {
+        Schema::create('orders_works', function (Blueprint $table) {
             $table->id();
             $table->integer('order_id');
-            $table->integer('job_id');
+            $table->integer('work_id');
             $table->DECIMAL('cost');
             $table->integer('quantity');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
-            $table->foreign('job_id')->references('id')->on('jobs')->onDelete('cascade');
+            $table->foreign('work_id')->references('id')->on('works')->onDelete('cascade');
 
         });
     }
