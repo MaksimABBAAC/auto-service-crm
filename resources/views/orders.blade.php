@@ -21,6 +21,10 @@
             <td>{{$order->model}}</td>
             <td>{{$order->client_id}}</td>
             <td>{{$order->master_id}}</td>
+            <td>
+                <a href="{{url('orders/destroy/'.$order->id)}}">Удалить</a>
+                <a href="{{url('orders/edit/'.$order->id)}}">Редактировать</a>
+            </td>
         </tr>
     @endforeach
 </table>

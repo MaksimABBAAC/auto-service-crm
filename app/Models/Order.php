@@ -9,6 +9,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Order extends Model
 {
+    protected $fillable = [
+        'brand',       // Добавьте это поле
+        'model',       // Добавьте это поле
+        'client_id',   // Добавьте это поле
+        'master_id',   // Добавьте это поле
+    ];
     use HasFactory;
     public function clients(): BelongsTo
     {
