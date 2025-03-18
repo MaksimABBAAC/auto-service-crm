@@ -13,10 +13,16 @@
     <div>
         <label>Марка автомобиля</label>
         <input type="text" name="brand" value="{{ old('brand', $order->brand) }}">
+        @error('brand')
+        <div class="is-invalid">{{ $message }}</div>
+        @enderror
     </div>
     <div>
         <label>Модель автомобиля</label>
         <input type="text" name="model" value="{{ old('model', $order->model) }}">
+        @error('model')
+        <div class="is-invalid">{{ $message }}</div>
+        @enderror
     </div>
     <div>
         <label for="client_id">Клиент:</label>
