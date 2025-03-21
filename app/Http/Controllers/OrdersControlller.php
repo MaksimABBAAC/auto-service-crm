@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Client;
 use App\Models\Master;
+use Illuminate\Support\Facades\Gate;
+
 class OrdersControlller extends Controller
 {
     public function index(Request $request)
@@ -73,6 +75,11 @@ class OrdersControlller extends Controller
 
     public function destroy(string $id)
     {
+        if (!Gate::allows('destroy-item', Order::all()->where('id', $id)->first()))
+        {
+            return redirect('/error')->with('message',
+            'У вас нет разрешения на удаления данной записи '.$id);
+        }
         Order::destroy($id);
         return redirect()->route('orders.index');
     }
