@@ -18,4 +18,23 @@ class MastersControlller extends Controller
             ['master' => Master::all()->where('id',$id)->first()
         ]);
     }
+    public function create()
+    {
+        return view('master_create');
+    }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'second_name' => 'nullable|string|max:255',
+            'email' => 'required|email|unique:masters,email',
+            'phone' => 'required|string|max:20|unique:masters,phone'
+        ]);
+
+        Master::create($validated);
+
+        return redirect()->route('masters.index')->with('success', 'Мастер успешно создан');
+    }
 }

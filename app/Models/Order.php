@@ -16,17 +16,17 @@ class Order extends Model
         'master_id',   // Добавьте это поле
     ];
     use HasFactory;
-    public function clients(): BelongsTo
+    public function client(): BelongsTo
     {
         return $this->belongsTo(Client::class);
     }
-    public function masters(): BelongsTo
+    public function master(): BelongsTo
     {
         return $this->belongsTo(Master::class);
     }
-    public function works(): BelongsToMany
+    public function works()
     {
         return $this->belongsToMany(Work::class, 'orders_works')
-            ->withPivot(['cost', 'quantity']);
+            ->withPivot(['quantity', 'cost']);
     }
 }

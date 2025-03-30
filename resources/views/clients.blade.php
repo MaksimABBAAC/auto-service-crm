@@ -1,12 +1,10 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>605-11</title>
-    </head>
-    <body>
+@extends('layout')
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
         <h2>Список клиентов</h2>
-        <table border="1">
+        <table border="1" class="table mx-auto" style="width: 100%;">
             <thead>
                 <td>id</td>
                 <td>first_name</td>
@@ -17,7 +15,7 @@
             </thead>
             @foreach($clients as $client)
                 <tr>
-                    <td>{{$client->id}}</td>
+                    <td><a href="{{url('client/'.$client->id)}}">{{$client->id}}</a></td>
                     <td>{{$client->first_name}}</td>
                     <td>{{$client->second_name}}</td>
                     <td>{{$client->last_name}}</td>
@@ -26,5 +24,7 @@
                 </tr>
             @endforeach
         </table>
-    </body>
-</html>
+        </div>
+    </div>
+</div>
+@endsection

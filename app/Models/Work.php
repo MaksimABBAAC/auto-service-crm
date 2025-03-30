@@ -7,8 +7,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Work extends Model
 {
-    public function orders(): BelongsToMany
+    protected $fillable = ['name', 'cost'];
+
+    public function orders()
     {
-        return $this->belongsToMany(Order::class, 'orders_works');
+
+        return $this->belongsToMany(Order::class, 'orders_works')
+            ->withPivot(['quantity', 'cost']);
     }
 }

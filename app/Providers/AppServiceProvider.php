@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Models\Order;
 use App\Models\User;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Gate;
@@ -25,8 +24,11 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::defaultView('pagination::default');
 
-        Gate::define('destrpy-item', function(User $user, Order $order){
-            return $user->is_admin or $order->client_id < 10;
+        Gate::define('destroy-order', function(User $user){
+            return $user->is_admin;
+        });
+        Gate::define('edit-order', function(User $user){
+            return $user->is_admin;
         });
     }
 }
